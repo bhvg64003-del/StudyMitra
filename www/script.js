@@ -241,3 +241,115 @@ document.addEventListener("backbutton", function () {
   }
 
 });
+
+// ===============================
+// Automatic Lecture System
+// ===============================
+
+const lectureData = {
+  "Ch-01 : Mathematical Tools": [
+    { title: "Lecture 01", video: "videos/lecture01.mp4" },
+    { title: "Lecture 02", video: "videos/lecture02.mp4" },
+    { title: "Lecture 03", video: "videos/lecture03.mp4" },
+    { title: "Lecture 04", video: "videos/lecture04.mp4" },
+    { title: "Lecture 05", video: "videos/lecture05.mp4" }
+  ]
+};
+
+function loadLectures(chapterName) {
+  const lectureBox = document.getElementById("lectures");
+
+  if (!lectureBox) return;
+
+  lectureBox.innerHTML = "";
+
+  const lectures = lectureData[chapterName] || [];
+
+  lectures.forEach((lecture, index) => {
+
+    const card = document.createElement("div");
+
+    card.className = "material-card";
+
+    card.innerHTML = `
+      🎥 ${lecture.title}
+      <span>▶️</span>
+    `;
+
+    card.onclick = function () {
+      openVideo(lecture.title, lecture.video);
+    };
+
+    lectureBox.appendChild(card);
+  });
+}
+
+
+// ===============================
+// Video Player
+// ===============================
+
+function openVideo(title, videoPath) {
+
+  const video = document.createElement("video");
+
+  video.controls = true;
+  video.autoplay = true;
+  video.style.width = "100%";
+  video.style.borderRadius = "14px";
+
+  video.src = videoPath;
+
+  const lectureBox = document.getElementById("lectures");
+
+  if (lectureBox) {
+    lectureBox.innerHTML = "";
+
+    const heading = document.createElement("h3");
+    heading.textContent = title;
+
+    lectureBox.appendChild(heading);
+    lectureBox.appendChild(video);
+  }
+}
+// ===============================
+// Capacitor Android Back Button
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (window.Capacitor && window.Capacitor.Plugins.App) {
+
+    window.Capacitor.Plugins.App.addListener(
+      "backButton",
+      ({ canGoBack }) => {
+
+        const activeScreen = document.querySelector(".screen.active");
+
+        if (!activeScreen) return;
+
+        const screenId = activeScreen.id;
+
+        if (screenId === "chapter") {
+          showScreen("subject");
+
+        } else if (screenId === "subject") {
+          showScreen("courseDetail");
+
+        } else if (screenId === "courseDetail") {
+          showScreen("courses");
+
+        } else if (screenId === "courses") {
+          showScreen("home");
+
+        } else if (screenId === "profile") {
+          showScreen("home");
+
+        } else if (screenId === "home") {
+          window.Capacitor.Plugins.App.exitApp();
+        }
+      }
+    );
+  }
+  
+});
