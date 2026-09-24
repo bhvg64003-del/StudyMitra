@@ -206,3 +206,38 @@ document.addEventListener("DOMContentLoaded", () => {
     classSelect.addEventListener("change", filterCourses);
   }
 });
+ // ===============================
+// Android Back Button
+// ===============================
+
+document.addEventListener("backbutton", function () {
+
+  const screens = document.querySelectorAll(".screen");
+  let currentScreen = "";
+
+  screens.forEach((screen) => {
+    if (screen.classList.contains("active")) {
+      currentScreen = screen.id;
+    }
+  });
+
+  if (currentScreen === "chapter") {
+    showScreen("subject");
+
+  } else if (currentScreen === "subject") {
+    showScreen("courseDetail");
+
+  } else if (currentScreen === "courseDetail") {
+    showScreen("courses");
+
+  } else if (currentScreen === "courses") {
+    showScreen("home");
+
+  } else if (currentScreen === "profile") {
+    showScreen("home");
+
+  } else if (currentScreen === "home") {
+    // Home par rehne do
+  }
+
+});
