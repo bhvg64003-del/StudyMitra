@@ -8,73 +8,205 @@
 </head>
 
 <body>
-  <div id="app">
-    <header class="topbar">
+
+<header class="topbar">
+  <h1>StudyMitra</h1>
+  <div class="top-actions">⏱️　↗️</div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="screen active">
+    <div class="welcome">
+      <h2>Welcome back,</h2>
+      <p>Ready to learn today?</p>
+    </div>
+
+    <h2 class="section-title">Quick Access</h2>
+
+    <div class="quick-grid">
+      <button onclick="showMessage('Recents')">🕘<span>Recents</span></button>
+      <button onclick="showMessage('Downloads')">⬇️<span>Downloads</span></button>
+      <button onclick="showMessage('Favourite')">❤️<span>Favourite</span></button>
+    </div>
+
+    <h2 class="section-title">Your Learning Path</h2>
+
+    <div class="home-card" onclick="openCourses()">
+      <div class="card-icon">📚</div>
       <div>
-        <div class="brand">Study<span>Mitra</span></div>
-        <p>Your learning companion</p>
+        <h3>Courses</h3>
+        <p>Find your course and start learning</p>
       </div>
-      <button class="profile-btn">👤</button>
-    </header>
+      <b>Explore ›</b>
+    </div>
 
-    <main>
-      <section class="welcome">
-        <p class="small">WELCOME BACK 👋</p>
-        <h1>Ready to learn<br>something new?</h1>
-      </section>
+    <div class="home-card" onclick="showMessage('Batches')">
+      <div class="card-icon">🎓</div>
+      <div>
+        <h3>Batches</h3>
+        <p>Explore your learning batches</p>
+      </div>
+      <b>Explore ›</b>
+    </div>
+  </section>
 
-      <section class="search-box">
-        <span>🔍</span>
-        <input type="text" placeholder="Search courses, videos, notes...">
-      </section>
 
-      <h2>Quick Access</h2>
+  <!-- COURSES -->
+  <section id="courses" class="screen">
 
-      <section class="quick-grid">
-        <button class="quick-card physics">
-          <span>⚡</span>
-          <strong>Physics</strong>
-          <small>Learn concepts</small>
-        </button>
+    <div class="page-head">
+      <button onclick="goHome()">‹</button>
+      <h2>Courses</h2>
+    </div>
 
-        <button class="quick-card chemistry">
-          <span>🧪</span>
-          <strong>Chemistry</strong>
-          <small>Master reactions</small>
-        </button>
+    <div class="selectors">
+      <select id="examSelect">
+        <option>🔬 Select Exam</option>
+        <option>JEE</option>
+        <option>NEET</option>
+        <option>Other</option>
+      </select>
 
-        <button class="quick-card maths">
-          <span>📐</span>
-          <strong>Mathematics</strong>
-          <small>Practice problems</small>
-        </button>
+      <select id="classSelect">
+        <option>🎓 Select Class</option>
+        <option>11</option>
+        <option>12</option>
+        <option>12+</option>
+        <option>Dropper</option>
+      </select>
+    </div>
 
-        <button class="quick-card notes">
-          <span>📚</span>
-          <strong>Class Notes</strong>
-          <small>Revise anytime</small>
-        </button>
-      </section>
+    <input
+      class="search"
+      type="search"
+      placeholder="🔍 Search courses..."
+      oninput="searchCourses(this.value)"
+    >
 
-      <section class="continue-card">
-        <div>
-          <p>CONTINUE WATCHING</p>
-          <h3>Your lectures will appear here</h3>
-          <span>Resume from where you stopped</span>
-        </div>
-        <button>▶️</button>
-      </section>
-    </main>
+    <div id="courseList">
 
-    <nav class="bottom-nav">
-      <button class="active">⌂<span>Home</span></button>
-      <button>▣<span>Courses</span></button>
-      <button>▶️<span>Videos</span></button>
-      <button>📝<span>Tests</span></button>
-      <button>👤<span>Profile</span></button>
-    </nav>
-  </div>
+      <div class="course-card" data-name="Prayas JEE 2.0">
+        <div class="course-banner">PRAYAS JEE 2.0</div>
+        <h3>Prayas JEE 2.0</h3>
+        <p>Exam: <b>JEE</b>　 Class: <b>12+</b></p>
+        <button onclick="openCourse()">Let's Study</button>
+      </div>
 
-  <script src="script.js"></script>
+      <div class="course-card" data-name="JEE Dropper">
+        <div class="course-banner second">JEE DROPPER</div>
+        <h3>JEE Dropper Course</h3>
+        <p>Exam: <b>JEE</b>　 Class: <b>Dropper</b></p>
+        <button onclick="openCourse()">Let's Study</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- COURSE DETAIL -->
+  <section id="courseDetail" class="screen">
+
+    <div class="page-head">
+      <button onclick="openCourses()">‹</button>
+      <h2>Prayas JEE 2.0</h2>
+    </div>
+
+    <p class="course-subtitle">Select Subject</p>
+
+    <div class="subject-card" onclick="openSubject('Physics')">
+      ⚡ <span>Physics</span> <b>›</b>
+    </div>
+
+    <div class="subject-card" onclick="openSubject('Chemistry')">
+      🧪 <span>Chemistry</span> <b>›</b>
+    </div>
+
+    <div class="subject-card" onclick="openSubject('Mathematics')">
+      📐 <span>Mathematics</span> <b>›</b>
+    </div>
+
+  </section>
+
+
+  <!-- SUBJECT / CHAPTERS -->
+  <section id="subject" class="screen">
+
+    <div class="page-head">
+      <button onclick="openCourse()">‹</button>
+      <h2 id="subjectTitle">Mathematics</h2>
+    </div>
+
+    <p class="course-subtitle">Select Chapter</p>
+
+    <div class="chapter-card" onclick="openChapter('Ch-01 : Mathematical Tools')">
+      <span>Ch-01 : Mathematical Tools</span>
+      <b>›</b>
+    </div>
+
+    <div class="chapter-card" onclick="openChapter('Ch-02')">
+      <span>Ch-02 : Chapter 02</span>
+      <b>›</b>
+    </div>
+
+    <div class="chapter-card" onclick="openChapter('Ch-03')">
+      <span>Ch-03 : Chapter 03</span>
+      <b>›</b>
+    </div>
+
+  </section>
+
+
+  <!-- CHAPTER -->
+  <section id="chapter" class="screen">
+
+    <div class="page-head">
+      <button onclick="showScreen('subject')">‹</button>
+      <h2 id="chapterTitle">Ch-01</h2>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('lectures')">Lectures</button>
+      <button class="tab" onclick="showTab('notes')">Notes</button>
+      <button class="tab" onclick="showTab('dpps')">DPPs</button>
+      <button class="tab" onclick="showTab('dppvideos')">DPP Videos</button>
+    </div>
+
+    <div id="lectures" class="tab-content active">
+      <div class="material-card">🎥 Lecture 01 <span>›</span></div>
+      <div class="material-card">🎥 Lecture 02 <span>›</span></div>
+      <div class="material-card">🎥 Lecture 03 <span>›</span></div>
+    </div>
+
+    <div id="notes" class="tab-content">
+      <div class="material-card">📄 Class Notes 01.pdf <span>✓</span></div>
+      <div class="material-card">📄 Class Notes 02.pdf <span>✓</span></div>
+    </div>
+
+    <div id="dpps" class="tab-content">
+      <div class="material-card">📝 DPP 01 <span>›</span></div>
+      <div class="material-card">📝 DPP 02 <span>›</span></div>
+    </div>
+
+    <div id="dppvideos" class="tab-content">
+      <div class="material-card">🎬 DPP Video 01 <span>›</span></div>
+      <div class="material-card">🎬 DPP Video 02 <span>›</span></div>
+    </div>
+
+  </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+  <button onclick="goHome()">🏠<small>Home</small></button>
+  <button onclick="openCourses()">📚<small>Courses</small></button>
+  <button onclick="showMessage('Videos')">▶️<small>Videos</small></button>
+  <button onclick="showMessage('Tests')">📝<small>Tests</small></button>
+  <button onclick="showMessage('Profile')">👤<small>Profile</small></button>
+</nav>
+
+<script src="script.js"></script>
 </body>
 </html>
