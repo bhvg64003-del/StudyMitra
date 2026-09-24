@@ -1,0 +1,16 @@
+{
+  "name": "studymitra",
+  "version": "1.0.0",
+  "description": "StudyMitra - Smart Education & Learning App",
+  "private": true,
+  "scripts": {
+    "build": "echo StudyMitra web build ready"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/core": "^7.4.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.4"
+  }
+}
