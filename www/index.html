@@ -193,71 +193,98 @@
       <div class="material-card">🎬 DPP Video 01 <span>›</span></div>
       <div class="material-card">🎬 DPP Video 02 <span>›</span></div>
     </div>
-
-  </section>
 <!-- PROFILE -->
 <section id="profile" class="screen">
 
-  <div class="page-head">
-    <button onclick="goHome()">‹</button>
-    <h2>Profile</h2>
-  </div>
-
-  <div class="profile-header">
-    <div class="profile-avatar">S</div>
+  <div class="profile-top">
     <div>
-      <h2>StudyMitra Student</h2>
-      <p>Keep learning, keep growing 🚀</p>
+      <p class="profile-label">MY PROFILE</p>
+      <h2>StudyMitra</h2>
     </div>
+
+    <button class="profile-settings" onclick="showMessage('Settings')">⚙</button>
   </div>
 
-  <div class="profile-menu">
+  <div class="profile-card">
+    <div class="profile-avatar-large">S</div>
 
-    <button onclick="showMessage('My Courses')">
-      <span>📚</span>
-      <div>
-        <strong>My Courses</strong>
-        <small>Your enrolled courses</small>
-      </div>
-      <b>›</b>
+    <div class="profile-info">
+      <h3>StudyMitra Student</h3>
+      <p>JEE Preparation</p>
+      <span>Learning every day 🚀</span>
+    </div>
+
+    <button class="edit-profile" onclick="showMessage('Edit Profile')">
+      Edit
     </button>
+  </div>
 
-    <button onclick="showMessage('Downloads')">
-      <span>⬇️</span>
-      <div>
-        <strong>Downloads</strong>
-        <small>Saved study material</small>
-      </div>
-      <b>›</b>
-    </button>
+  <div class="profile-stats">
 
-    <button onclick="showMessage('Favourite')">
-      <span>❤️</span>
-      <div>
-        <strong>Favourite</strong>
-        <small>Your saved content</small>
-      </div>
-      <b>›</b>
-    </button>
+    <div class="stat-box">
+      <strong>0</strong>
+      <span>Courses</span>
+    </div>
 
-    <button onclick="showMessage('Settings')">
-      <span>⚙️</span>
-      <div>
-        <strong>Settings</strong>
-        <small>App preferences</small>
-      </div>
-      <b>›</b>
-    </button>
+    <div class="stat-box">
+      <strong>0</strong>
+      <span>Videos</span>
+    </div>
 
-    <button onclick="showMessage('About StudyMitra')">
-      <span>ℹ️</span>
-      <div>
-        <strong>About StudyMitra</strong>
-        <small>App information</small>
-  <button onclick="showScreen('profile')">👤<small>Profile</small></button>  </div>
-      <b>›</b>
-    </button>
+    <div class="stat-box">
+      <strong>0%</strong>
+      <span>Progress</span>
+    </div>
 
+  </div>
+
+  <h3 class="profile-section-title">My Learning</h3>
+
+  <div class="profile-option" onclick="openCourses()">
+    <div class="option-icon">📚</div>
+    <div class="option-text">
+      <strong>My Courses</strong>
+      <span>Continue your learning</span>
+    </div>
+    <b>›</b>
+  </div>
+
+  <div class="profile-option" onclick="showMessage('Downloads')">
+    <div class="option-icon">⬇</div>
+    <div class="option-text">
+      <strong>Downloads</strong>
+      <span>Your saved study material</span>
+    </div>
+    <b>›</b>
+  </div>
+
+  <div class="profile-option" onclick="showMessage('Favourite')">
+    <div class="option-icon">♡</div>
+    <div class="option-text">
+      <strong>Favourite</strong>
+      <span>Your saved content</span>
+    </div>
+    <b>›</b>
+  </div>
+
+  <h3 class="profile-section-title">More</h3>
+
+  <div class="profile-option" onclick="showMessage('Settings')">
+    <div class="option-icon">⚙</div>
+    <div class="option-text">
+      <strong>Settings</strong>
+      <span>Manage app preferences</span>
+    </div>
+    <b>›</b>
+  </div>
+
+  <div class="profile-option" onclick="showMessage('About StudyMitra')">
+    <div class="option-icon">ⓘ</div>
+    <div class="option-text">
+      <strong>About StudyMitra</strong>
+      <span>App information</span>
+    </div>
+    <b>›</b>
   </div>
 
 </section>
