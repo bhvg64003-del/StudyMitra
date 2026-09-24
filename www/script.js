@@ -137,3 +137,17 @@ function showTab(tabId) {
 function showMessage(name) {
   alert(name + " section will be available soon.");
 }
+ // ===============================
+// Edit Profile
+// ===============================
+
+function editProfile() {
+  const name = prompt("Enter your name:", "StudyMitra Student");
+
+  if (name && name.trim() !== "") {
+    const nameElement = document.querySelector(".profile-info h3");
+    if (nameElement) {
+      nameElement.textContent = name.trim();
+    }
+  }
+}
