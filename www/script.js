@@ -152,3 +152,57 @@ function editProfile() {
   }
 }
  
+// ===============================
+// Course Filters
+// ===============================
+
+function filterCourses() {
+  const exam = document.getElementById("examSelect").value;
+  const className = document.getElementById("classSelect").value;
+  const searchBox = document.querySelector(".search");
+
+  const searchText = searchBox
+    ? searchBox.value.toLowerCase().trim()
+    : "";
+
+  const courses = document.querySelectorAll(".course-card");
+
+  courses.forEach((course) => {
+    const text = course.innerText.toLowerCase();
+
+    const examMatch =
+      exam === "🔬 Select Exam" ||
+      exam === "Other" ||
+      text.includes(exam.toLowerCase());
+
+    const classMatch =
+      className === "🎓 Select Class" ||
+      text.includes(className.toLowerCase());
+
+    const searchMatch =
+      text.includes(searchText);
+
+    course.style.display =
+      examMatch && classMatch && searchMatch
+        ? "block"
+        : "none";
+  });
+}
+
+
+// ===============================
+// Course Filter Events
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const examSelect = document.getElementById("examSelect");
+  const classSelect = document.getElementById("classSelect");
+
+  if (examSelect) {
+    examSelect.addEventListener("change", filterCourses);
+  }
+
+  if (classSelect) {
+    classSelect.addEventListener("change", filterCourses);
+  }
+});
