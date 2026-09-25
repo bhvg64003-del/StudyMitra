@@ -312,7 +312,27 @@ document.addEventListener("DOMContentLoaded", () => {
           showScreen("courses");
           break;
 
-        case "courses":
+  function openLecture(lectureName) {
+
+  const lectureList = document.getElementById("lectureList");
+
+  if (!lectureList) return;
+
+  lectureList.innerHTML = `
+    <div class="video-player-box">
+      <h3>${lectureName}</h3>
+
+      <video
+        controls
+        playsinline
+        style="width:100%; border-radius:14px;"
+      >
+        <source src="assets/${lectureName}.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+  `;
+}      case "courses":
           showScreen("home");
           break;
 
@@ -327,6 +347,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-function openLecture(lectureName) {
-  alert(lectureName + " selected");
-}
