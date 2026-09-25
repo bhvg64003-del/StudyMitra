@@ -206,31 +206,60 @@ document.addEventListener("DOMContentLoaded", () => {
     classSelect.addEventListener("change", filterCourses);
   }
 });
-
 // ===============================
 // Automatic Lecture System
 // ===============================
 
 const lectureData = {
   "Ch-01 : Mathematical Tools": [
-    { title: "Lecture 01", video: "videos/lecture01.mp4" },
-    { title: "Lecture 02", video: "videos/lecture02.mp4" },
-    { title: "Lecture 03", video: "videos/lecture03.mp4" },
-    { title: "Lecture 04", video: "videos/lecture04.mp4" },
-    { title: "Lecture 05", video: "videos/lecture05.mp4" }
+    {
+      title: "Lecture 01",
+      video: "https://YOUR-VIDEO-LINK-1"
+    },
+    {
+      title: "Lecture 02",
+      video: "https://YOUR-VIDEO-LINK-2"
+    },
+    {
+      title: "Lecture 03",
+      video: "https://YOUR-VIDEO-LINK-3"
+    }
   ]
 };
 
+function openChapter(chapterName) {
+
+  const title = document.getElementById("chapterTitle");
+
+  if (title) {
+    title.textContent = chapterName;
+  }
+
+  showScreen("chapter");
+
+  loadLectures(chapterName);
+}
+
 function loadLectures(chapterName) {
-  const lectureBox = document.getElementById("lectures");
 
-  if (!lectureBox) return;
+  const lectureList = document.getElementById("lectureList");
 
-  lectureBox.innerHTML = "";
+  if (!lectureList) return;
+
+  lectureList.innerHTML = "";
 
   const lectures = lectureData[chapterName] || [];
 
-  lectures.forEach((lecture, index) => {
+  if (lectures.length === 0) {
+    lectureList.innerHTML = `
+      <div class="material-card">
+        📚 No lectures available
+      </div>
+    `;
+    return;
+  }
+
+  lectures.forEach((lecture) => {
 
     const card = document.createElement("div");
 
@@ -245,7 +274,7 @@ function loadLectures(chapterName) {
       openVideo(lecture.title, lecture.video);
     };
 
-    lectureBox.appendChild(card);
+    lectureList.appendChild(card);
   });
 }
 
@@ -256,26 +285,27 @@ function loadLectures(chapterName) {
 
 function openVideo(title, videoPath) {
 
+  const lectureList = document.getElementById("lectureList");
+
+  if (!lectureList) return;
+
+  lectureList.innerHTML = "";
+
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+
   const video = document.createElement("video");
 
   video.controls = true;
   video.autoplay = true;
+  video.playsInline = true;
   video.style.width = "100%";
   video.style.borderRadius = "14px";
 
   video.src = videoPath;
 
-  const lectureBox = document.getElementById("lectures");
-
-  if (lectureBox) {
-    lectureBox.innerHTML = "";
-
-    const heading = document.createElement("h3");
-    heading.textContent = title;
-
-    lectureBox.appendChild(heading);
-    lectureBox.appendChild(video);
-  }
+  lectureList.appendChild(heading);
+  lectureList.appendChild(video);
 }
  // ===============================
 // Android Back Button
