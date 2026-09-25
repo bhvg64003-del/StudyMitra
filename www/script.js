@@ -277,3 +277,52 @@ function openVideo(title, videoPath) {
     lectureBox.appendChild(video);
   }
 }
+ // ===============================
+// Android Back Button
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (
+    window.Capacitor &&
+    window.Capacitor.Plugins &&
+    window.Capacitor.Plugins.App
+  ) {
+
+    const App = window.Capacitor.Plugins.App;
+
+    App.addListener("backButton", () => {
+
+      const activeScreen = document.querySelector(".screen.active");
+
+      if (!activeScreen) return;
+
+      switch (activeScreen.id) {
+
+        case "chapter":
+          showScreen("subject");
+          break;
+
+        case "subject":
+          showScreen("courseDetail");
+          break;
+
+        case "courseDetail":
+          showScreen("courses");
+          break;
+
+        case "courses":
+          showScreen("home");
+          break;
+
+        case "profile":
+          showScreen("home");
+          break;
+
+        case "home":
+          App.exitApp();
+          break;
+      }
+    });
+  }
+});
