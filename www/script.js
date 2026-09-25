@@ -318,3 +318,138 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
 });
+/* ===============================
+   Premium Home Screen
+   =============================== */
+
+.home-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px;
+  margin-bottom: 18px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #18243a, #101827);
+}
+
+.hero-small {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.65;
+}
+
+.home-hero h2 {
+  margin: 7px 0 5px;
+  font-size: 25px;
+}
+
+.home-hero p {
+  margin: 0;
+  opacity: 0.65;
+  font-size: 13px;
+}
+
+.hero-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.08);
+  font-size: 28px;
+}
+
+.progress-card {
+  padding: 18px;
+  margin-bottom: 24px;
+  border-radius: 20px;
+  background: #151d2d;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-top span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.55;
+}
+
+.progress-top h3 {
+  margin: 6px 0 0;
+  font-size: 15px;
+}
+
+.progress-top strong {
+  font-size: 20px;
+}
+
+.progress-bar {
+  height: 7px;
+  margin-top: 16px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.progress-bar div {
+  width: 0%;
+  height: 100%;
+  border-radius: 10px;
+  background: #6c63ff;
+}
+
+.progress-card p {
+  margin: 10px 0 0;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-row > span {
+  font-size: 12px;
+  opacity: 0.55;
+}
+
+.quick-grid button {
+  min-height: 82px;
+}
+
+.quick-icon {
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+.featured-card {
+  border: 1px solid rgba(108, 99, 255, 0.25);
+}
+
+.home-card-content {
+  flex: 1;
+}
+
+.card-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+.home-card-content h3 {
+  margin: 5px 0;
+}
+
+.home-card-content p {
+  margin: 0;
+}
