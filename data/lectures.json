@@ -1,0 +1,26 @@
+{
+  "physics": {
+    "ch01": [
+      {
+        "title": "Lecture 01",
+        "video": ""
+      },
+      {
+        "title": "Lecture 02",
+        "video": ""
+      },
+      {
+        "title": "Lecture 03",
+        "video": ""
+      },
+      {
+        "title": "Lecture 04",
+        "video": ""
+      },
+      {
+        "title": "Lecture 05",
+        "video": ""
+      }
+    ]
+  }
+}
