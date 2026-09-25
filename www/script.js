@@ -277,47 +277,6 @@ function openVideo(title, videoPath) {
     lectureBox.appendChild(video);
   }
 }
-// ===============================
-// Capacitor Android Back Button
-// ===============================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  if (window.Capacitor && window.Capacitor.Plugins.App) {
-
-    window.Capacitor.Plugins.App.addListener(
-      "backButton",
-      ({ canGoBack }) => {
-
-        const activeScreen = document.querySelector(".screen.active");
-
-        if (!activeScreen) return;
-
-        const screenId = activeScreen.id;
-
-        if (screenId === "chapter") {
-          showScreen("subject");
-
-        } else if (screenId === "subject") {
-          showScreen("courseDetail");
-
-        } else if (screenId === "courseDetail") {
-          showScreen("courses");
-
-        } else if (screenId === "courses") {
-          showScreen("home");
-
-        } else if (screenId === "profile") {
-          showScreen("home");
-
-        } else if (screenId === "home") {
-          window.Capacitor.Plugins.App.exitApp();
-        }
-      }
-    );
-  }
-  
-});
 /* ===============================
    Premium Home Screen
    =============================== */
@@ -438,7 +397,54 @@ document.addEventListener("DOMContentLoaded", () => {
 .home-card-content {
   flex: 1;
 }
+// ===============================
+// FINAL ANDROID BACK BUTTON
+// ===============================
 
+document.addEventListener("DOMContentLoaded", async () => {
+
+  if (!window.Capacitor) return;
+
+  const App = window.Capacitor.Plugins.App;
+
+  if (!App) return;
+
+  await App.addListener("backButton", () => {
+
+    const activeScreen = document.querySelector(".screen.active");
+
+    if (!activeScreen) return;
+
+    switch (activeScreen.id) {
+
+      case "chapter":
+        showScreen("subject");
+        break;
+
+      case "subject":
+        showScreen("courseDetail");
+        break;
+
+      case "courseDetail":
+        showScreen("courses");
+        break;
+
+      case "courses":
+        showScreen("home");
+        break;
+
+      case "profile":
+        showScreen("home");
+        break;
+
+      case "home":
+        App.exitApp();
+        break;
+    }
+
+  });
+
+});
 .card-label {
   font-size: 9px;
   font-weight: 700;
