@@ -327,3 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+function openLecture(lectureName) {
+  alert(lectureName + " selected");
+}
