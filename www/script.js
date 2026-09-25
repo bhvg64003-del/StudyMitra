@@ -207,75 +207,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 // ===============================
-// Automatic Lecture System
+// Local Lecture Video System
 // ===============================
 
-const lectureData = {
-  "Ch-01 : Mathematical Tools": [
-    {
-      title: "Lecture 01",
-      video: "https://YOUR-VIDEO-LINK-1"
-    },
-    {
-      title: "Lecture 02",
-      video: "https://YOUR-VIDEO-LINK-2"
-    },
-    {
-      title: "Lecture 03",
-      video: "https://YOUR-VIDEO-LINK-3"
-    }
-  ]
-};
+async function selectLectureVideo() {
+  try {
+    const result = await Capacitor.Plugins.FilePicker.pickVideos({
+      limit: 1
+    });
 
-function openChapter(chapterName) {
+    const file = result.files[0];
 
-  const title = document.getElementById("chapterTitle");
+    if (!file) return;
 
-  if (title) {
-    title.textContent = chapterName;
+    openVideo(
+      file.name,
+      file.webPath
+    );
+
+  } catch (error) {
+    console.log("Video selection cancelled:", error);
   }
-
-  showScreen("chapter");
-
-  loadLectures(chapterName);
-}
-
-function loadLectures(chapterName) {
-
-  const lectureList = document.getElementById("lectureList");
-
-  if (!lectureList) return;
-
-  lectureList.innerHTML = "";
-
-  const lectures = lectureData[chapterName] || [];
-
-  if (lectures.length === 0) {
-    lectureList.innerHTML = `
-      <div class="material-card">
-        📚 No lectures available
-      </div>
-    `;
-    return;
-  }
-
-  lectures.forEach((lecture) => {
-
-    const card = document.createElement("div");
-
-    card.className = "material-card";
-
-    card.innerHTML = `
-      🎥 ${lecture.title}
-      <span>▶️</span>
-    `;
-
-    card.onclick = function () {
-      openVideo(lecture.title, lecture.video);
-    };
-
-    lectureList.appendChild(card);
-  });
 }
 
 
@@ -306,6 +258,25 @@ function openVideo(title, videoPath) {
 
   lectureList.appendChild(heading);
   lectureList.appendChild(video);
+}
+
+
+// ===============================
+// Select Video Button
+// ===============================
+
+function showVideoPicker() {
+
+  const lectureList = document.getElementById("lectureList");
+
+  if (!lectureList) return;
+
+  lectureList.innerHTML = `
+    <div class="material-card" onclick="selectLectureVideo()">
+      📁 Select Downloaded Lecture
+      <span>›</span>
+    </div>
+  `;
 }
  // ===============================
 // Android Back Button
